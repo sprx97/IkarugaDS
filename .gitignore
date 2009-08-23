@@ -1,0 +1,8 @@
+.DS_Store
+*/.DS_Store
+
+IkarugaDS.nds
+IkarugaDS.ds.gba
+
+build
+build/*
