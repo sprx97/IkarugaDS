@@ -8,6 +8,7 @@
 
 #include <PA9.h>
 #include "gfx/all_gfx.c"
+#include "ship.h"
 
 using namespace std;
 
@@ -30,19 +31,10 @@ int main(int argc, char** argv) {
 	PA_DualLoadSpritePal(IKARUGA, (void*)ikaruga_Pal);
 	PA_DualCreateSprite(IKARUGA, (void*)ikaruga_Sprite, OBJ_SIZE_32X32, COLOR256, IKARUGA, X, Y);
 	PA_DualStartSpriteAnim(IKARUGA, LIGHT, LIGHT, 1);
+	ship* player = new ship();
 
 	while(true) {
-		if(Pad.Newpress.B) PA_DualStartSpriteAnim(IKARUGA, !CURRENTCOLOR, !CURRENTCOLOR, 1);
-		
-		X += 3*(Pad.Held.Right-Pad.Held.Left);
-		Y += 3*(Pad.Held.Down-Pad.Held.Up);
-		
-		if(X > 224) X = 224;
-		if(X < 0) X = 0;
-		if(Y > 352) Y = 352;
-		if(Y < 0) Y = 0;
-		
-		PA_DualSetSpriteXY(IKARUGA, X, Y);
+		player->update();
 		PA_WaitForVBL();
 	}
 	
