@@ -9,14 +9,9 @@
 #include <PA9.h>
 #include "gfx/all_gfx.c"
 #include "ship.h"
+#include "global.h"
 
 using namespace std;
-
-#define COLOR256 1
-#define IKARUGA 0
-#define LIGHT 0
-#define DARK 1
-#define CURRENTCOLOR (PA_DualGetSpriteAnimFrame(IKARUGA))
 
 int X = 112, Y = 352;
 

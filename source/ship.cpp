@@ -1,4 +1,7 @@
 #include "ship.h"
+#include "global.h"
+#include <PA9.h>
+
 ship::ship(){
 	x = 112;
 	y = 352;

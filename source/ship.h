@@ -7,4 +7,4 @@ class ship {
 
 		void update();
 		void switchColor();
-}
+};
