@@ -1,3 +1,5 @@
+#ifndef SHIP_H //header guard
+#define SHIP_H
 class ship {
 	public:
 		ship();
@@ -8,3 +10,4 @@ class ship {
 		void update();
 		void switchColor();
 };
+#endif //SHIP_H header guard
