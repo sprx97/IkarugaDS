@@ -13,8 +13,6 @@
 
 using namespace std;
 
-int X = 112, Y = 352;
-
 int main(int argc, char** argv) {
 	PA_Init();
 	PA_InitVBL();
