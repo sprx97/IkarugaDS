@@ -5,7 +5,10 @@ class ship {
 		ship();
 		int x;
 		int y;
+		int shieldsize;
 		bool isWhite;
+		bool shieldshrinking;
+		bool shieldgrowing;
 
 		void update();
 		void switchColor();
