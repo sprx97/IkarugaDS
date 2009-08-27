@@ -23,9 +23,6 @@ int main(int argc, char** argv) {
 
 	PA_SetScreenSpace(0);
 
-	PA_DualLoadSpritePal(IKARUGA, (void*)ikaruga_Pal);
-	PA_DualCreateSprite(IKARUGA, (void*)ikaruga_Sprite, OBJ_SIZE_32X32, COLOR256, IKARUGA, X, Y);
-	PA_DualStartSpriteAnim(IKARUGA, LIGHT, LIGHT, 1);
 	ship* player = new ship();
 
 	while(true) {

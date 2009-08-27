@@ -16,13 +16,10 @@
 } PAGfx_struct;
 #endif
 
-
-// Sprite files : 
 extern const unsigned char ikaruga_Sprite[2048] __attribute__ ((aligned (4))) ;  // Pal : ikaruga_Pal
-
-// Palette files : 
 extern const unsigned short ikaruga_Pal[24] __attribute__ ((aligned (4))) ;
-
+extern const unsigned char shield_Sprite[8192] __attribute__ ((aligned (4))) ;  // Pal : shield_Pal
+extern const unsigned short shield_Pal[73] __attribute__ ((aligned (4))) ;
 
 #endif
 

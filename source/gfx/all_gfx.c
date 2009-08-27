@@ -8,13 +8,10 @@ extern "C" {
 
 #include "all_gfx.h"
 
-
-// Sprite files : 
 #include "ikaruga.c"
-
-// Palette files : 
 #include "ikaruga.pal.c"
-
+#include "shield.c"
+#include "shield.pal.c"
 
 #ifdef __cplusplus
 }
