@@ -12,6 +12,8 @@ extern "C" {
 #include "ikaruga.pal.c"
 #include "shield.c"
 #include "shield.pal.c"
+#include "bullets.c"
+#include "bullets.pal.c"
 
 #ifdef __cplusplus
 }

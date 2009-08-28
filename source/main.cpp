@@ -23,6 +23,9 @@ int main(int argc, char** argv) {
 
 	ship* player = new ship();
 
+	PA_DualLoadSpritePal(BULLETS, (void*)bullets_Pal);
+	for(int n = BULLETS; n < 128; n++) PA_DualCreateSprite(n, (void*)bullets_Sprite, OBJ_SIZE_8X8, COLOR256, BULLETS, -8, -8);
+
 	while(true) {
 		player->update();
 		PA_WaitForVBL();

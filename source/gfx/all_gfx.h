@@ -20,6 +20,8 @@ extern const unsigned char ikaruga_Sprite[2048] __attribute__ ((aligned (4))) ; 
 extern const unsigned short ikaruga_Pal[24] __attribute__ ((aligned (4))) ;
 extern const unsigned char shield_Sprite[8192] __attribute__ ((aligned (4))) ;  // Pal : shield_Pal
 extern const unsigned short shield_Pal[73] __attribute__ ((aligned (4))) ;
+extern const unsigned char bullets_Sprite[128] __attribute__ ((aligned (4))) ;  // Pal : bullets_Pal
+extern const unsigned short bullets_Pal[5] __attribute__ ((aligned (4))) ;
 
 #endif
 

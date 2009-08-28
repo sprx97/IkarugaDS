@@ -11,9 +11,9 @@ ship::ship() {
 	shieldshrinking = false;
 	shieldgrowing = false;
 	
-	PA_DualLoadSpritePal(IKARUGA, (void*)ikaruga_Pal);
-	PA_DualCreateSprite(IKARUGA, (void*)ikaruga_Sprite, OBJ_SIZE_32X32, COLOR256, IKARUGA, x, y);
-	PA_DualStartSpriteAnim(IKARUGA, LIGHT, LIGHT, 1);
+	PA_DualLoadSpritePal(SHIP, (void*)ikaruga_Pal);
+	PA_DualCreateSprite(SHIP, (void*)ikaruga_Sprite, OBJ_SIZE_32X32, COLOR256, SHIP, x, y);
+	PA_DualStartSpriteAnim(SHIP, LIGHT, LIGHT, 1);
 	
 	PA_DualLoadSpritePal(SHIELD, (void*)shield_Pal);
 	PA_DualCreateSprite(SHIELD, (void*)shield_Sprite, OBJ_SIZE_64X64, COLOR256, SHIELD, x-16, y-16);
@@ -29,7 +29,7 @@ void ship::switchColor() {
 	else if(shieldshrinking) {
 		shieldsize -= 2;
 		if(shieldsize == 0) {
-			PA_DualStartSpriteAnim(IKARUGA, !CURRENTCOLOR, !CURRENTCOLOR, 1);
+			PA_DualStartSpriteAnim(SHIP, !CURRENTCOLOR, !CURRENTCOLOR, 1);
 			PA_DualStartSpriteAnim(SHIELD, CURRENTCOLOR, CURRENTCOLOR, 1);
 			isWhite = !isWhite;
 			shieldshrinking = false;
@@ -55,7 +55,7 @@ void ship::update(){
 	if(y > 352) y = 352;
 	if(y < 0) y = 0;
 
-	PA_DualSetSpriteXY(IKARUGA, x, y);
+	PA_DualSetSpriteXY(SHIP, x, y);
 	PA_DualSetSpriteXY(SHIELD, x-16, y-16);
 	PA_DualSetRotsetNoAngle(SHIELD, (96-shieldsize)*8, (96-shieldsize)*8);
 }
