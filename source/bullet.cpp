@@ -4,11 +4,13 @@
 #include <PA9.h>
 #include "gfx/all_gfx.h"
 
-bullet::bullet(int xpos, int ypos, int xvel, int yvel, bool c) {
+bullet::bullet(int xpos, int ypos, int xvel, int yvel, int xacc, int yacc, bool c) {
 	x = xpos;
 	y = ypos;
 	dx = xvel;
 	dy = yvel;
+	ax = xacc;
+	ay = yacc;
 	color = c;
 	spritenum = -1;
 	for(int n = BULLETS; n < 128; n++) if(PA_GetSpriteX(MAIN_SCREEN, n) == 504) spritenum = n;
@@ -21,6 +23,8 @@ bullet::bullet(int xpos, int ypos, int xvel, int yvel, bool c) {
 bool bullet::update(){
 	x += dx;
 	y += dy;
+	dx += ax;
+	dy += ay;
 	PA_DualSetSpriteXY(spritenum, x, y);
 	// check hits
 	if(x < -8 || y < -8 || x > 256 || y > 384) {

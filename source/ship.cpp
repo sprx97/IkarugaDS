@@ -53,9 +53,9 @@ void ship::updateBullets() {
 }
 void ship::update(){
 	if(Pad.Newpress.B || shieldshrinking || shieldgrowing) switchColor();
-	if(shieldsize == 64 && (Pad.Newpress.A || (Pad.Held.A && reloadtime < 0))) {
-		bullets.push_back(new bullet(x+6, y, 0, -5, CURRENTCOLOR));
-		bullets.push_back(new bullet(x+18, y, 0, -5, CURRENTCOLOR));
+	if(shieldsize == 64 && (Pad.Newpress.A || Pad.Held.A) && reloadtime < 0) {
+		bullets.push_back(new bullet(x+6, y, 0, -5, 0, 0, CURRENTCOLOR));
+		bullets.push_back(new bullet(x+18, y, 0, -5, 0, 0, CURRENTCOLOR));
 		reloadtime = 5;
 	}
 	reloadtime--;
