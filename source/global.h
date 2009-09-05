@@ -7,4 +7,6 @@
 #define LIGHT 0
 #define DARK 1
 #define CURRENTCOLOR (PA_DualGetSpriteAnimFrame(SHIP))
+#define MAIN_SCREEN 1
+#define SUB_SCREEN 0
 #endif //GLOBAL_H header guard

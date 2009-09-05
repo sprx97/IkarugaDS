@@ -1,5 +1,9 @@
 #ifndef SHIP_H //header guard
 #define SHIP_H
+
+#include "bullet.h"
+#include <vector>
+
 class ship {
 	public:
 		ship();
@@ -9,8 +13,10 @@ class ship {
 		bool isWhite;
 		bool shieldshrinking;
 		bool shieldgrowing;
+		std::vector<bullet*> bullets;
 
 		void update();
+		void updateBullets();
 		void switchColor();
 };
 #endif //SHIP_H header guard

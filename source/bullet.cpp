@@ -10,14 +10,22 @@ bullet::bullet(int xpos, int ypos, int xvel, int yvel, bool c) {
 	dx = xvel;
 	dy = yvel;
 	color = c;
-
-	// select sprite to use
+	spritenum = -1;
+	for(int n = BULLETS; n < 128; n++) if(PA_GetSpriteX(MAIN_SCREEN, n) == 504) spritenum = n;
+	if(spritenum != -1) {
+		PA_DualSetSpriteXY(spritenum, x, y);
+		PA_DualStartSpriteAnim(spritenum, CURRENTCOLOR, CURRENTCOLOR, 1);
+	}
+	else while(true) {}
 }
-void bullet::remove() {
-
-}
-void bullet::update(){
-	// move sprite
+bool bullet::update(){
+	x += dx;
+	y += dy;
+	PA_DualSetSpriteXY(spritenum, x, y);
 	// check hits
-	// check off screen
+	if(x < -8 || y < -8 || x > 256 || y > 384) {
+		PA_DualSetSpriteXY(spritenum, -8, -8);
+		return false;
+	}
+	return true;
 }

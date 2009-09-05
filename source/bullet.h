@@ -8,8 +8,8 @@ class bullet {
 		int dx;
 		int dy;
 		bool color;
+		int spritenum;
 
-		void update();
-		void remove();
+		bool update();
 };
 #endif //BULLET_H header guard

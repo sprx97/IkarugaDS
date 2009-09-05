@@ -1,4 +1,5 @@
 #include "ship.h"
+#include "bullet.h"
 #include "global.h"
 #include <PA9.h>
 #include "gfx/all_gfx.h"
@@ -41,8 +42,17 @@ void ship::switchColor() {
 		if(shieldsize == 64) shieldgrowing = false;
 	}
 }
+void ship::updateBullets() {
+	std::vector<bullet*> temp;
+	for(int n = 0; n < (int)bullets.size(); n++) {
+		if(bullets[n] -> update()) temp.push_back(bullets[n]);
+		else delete bullets[n];
+	}
+	bullets = temp;
+}
 void ship::update(){
 	if(Pad.Newpress.B || shieldshrinking || shieldgrowing) switchColor();
+	if(Pad.Newpress.A) bullets.push_back(new bullet(x+12, y, 0, -5, CURRENTCOLOR));
 
 	int dx = 3*(Pad.Held.Right-Pad.Held.Left);
 	int dy = 3*(Pad.Held.Down-Pad.Held.Up);
@@ -54,6 +64,8 @@ void ship::update(){
 	if(x < 0) x = 0;
 	if(y > 352) y = 352;
 	if(y < 0) y = 0;
+
+	updateBullets();
 
 	PA_DualSetSpriteXY(SHIP, x, y);
 	PA_DualSetSpriteXY(SHIELD, x-16, y-16);
