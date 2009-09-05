@@ -8,6 +8,7 @@ ship::ship() {
 	x = 112;
 	y = 352;
 	shieldsize = 64;
+	reloadtime = 0;
 	isWhite=true;
 	shieldshrinking = false;
 	shieldgrowing = false;
@@ -24,11 +25,11 @@ ship::ship() {
 }
 void ship::switchColor() {
 	if(!shieldshrinking && !shieldgrowing) {
-		shieldsize -= 2;
+		shieldsize -= 4;
 		shieldshrinking = true;
 	}
 	else if(shieldshrinking) {
-		shieldsize -= 2;
+		shieldsize -= 4;
 		if(shieldsize == 0) {
 			PA_DualStartSpriteAnim(SHIP, !CURRENTCOLOR, !CURRENTCOLOR, 1);
 			PA_DualStartSpriteAnim(SHIELD, CURRENTCOLOR, CURRENTCOLOR, 1);
@@ -38,7 +39,7 @@ void ship::switchColor() {
 		}
 	}
 	else if(shieldgrowing) {
-		shieldsize += 2;
+		shieldsize += 4;
 		if(shieldsize == 64) shieldgrowing = false;
 	}
 }
@@ -52,13 +53,15 @@ void ship::updateBullets() {
 }
 void ship::update(){
 	if(Pad.Newpress.B || shieldshrinking || shieldgrowing) switchColor();
-	if(Pad.Newpress.A) bullets.push_back(new bullet(x+12, y, 0, -5, CURRENTCOLOR));
+	if(shieldsize == 64 && (Pad.Newpress.A || (Pad.Held.A && reloadtime < 0))) {
+		bullets.push_back(new bullet(x+6, y, 0, -5, CURRENTCOLOR));
+		bullets.push_back(new bullet(x+18, y, 0, -5, CURRENTCOLOR));
+		reloadtime = 5;
+	}
+	reloadtime--;
 
-	int dx = 3*(Pad.Held.Right-Pad.Held.Left);
-	int dy = 3*(Pad.Held.Down-Pad.Held.Up);
-
-	x += dx;
-	y += dy;
+	x += 3*(Pad.Held.Right-Pad.Held.Left);
+	y += 3*(Pad.Held.Down-Pad.Held.Up);
 
 	if(x > 224) x = 224;
 	if(x < 0) x = 0;

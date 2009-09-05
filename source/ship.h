@@ -10,6 +10,7 @@ class ship {
 		int x;
 		int y;
 		int shieldsize;
+		int reloadtime;
 		bool isWhite;
 		bool shieldshrinking;
 		bool shieldgrowing;
