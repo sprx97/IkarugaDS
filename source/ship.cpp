@@ -9,7 +9,7 @@ ship::ship() {
 	y = 352;
 	shieldsize = 64;
 	reloadtime = 0;
-	isWhite=true;
+	color=LIGHT;
 	shieldshrinking = false;
 	shieldgrowing = false;
 	
@@ -31,9 +31,9 @@ void ship::switchColor() {
 	else if(shieldshrinking) {
 		shieldsize -= 4;
 		if(shieldsize == 0) {
-			PA_DualStartSpriteAnim(SHIP, !CURRENTCOLOR, !CURRENTCOLOR, 1);
-			PA_DualStartSpriteAnim(SHIELD, CURRENTCOLOR, CURRENTCOLOR, 1);
-			isWhite = !isWhite;
+			PA_DualStartSpriteAnim(SHIP, !color, !color, 1);
+			PA_DualStartSpriteAnim(SHIELD, !color, !color, 1);
+			color = !color;
 			shieldshrinking = false;
 			shieldgrowing = true;
 		}
@@ -43,19 +43,11 @@ void ship::switchColor() {
 		if(shieldsize == 64) shieldgrowing = false;
 	}
 }
-void ship::updateBullets() {
-	std::vector<bullet*> temp;
-	for(int n = 0; n < (int)bullets.size(); n++) {
-		if(bullets[n] -> update()) temp.push_back(bullets[n]);
-		else delete bullets[n];
-	}
-	bullets = temp;
-}
 void ship::update(){
 	if(Pad.Newpress.B || shieldshrinking || shieldgrowing) switchColor();
 	if(shieldsize == 64 && (Pad.Newpress.A || Pad.Held.A) && reloadtime < 0) {
-		bullets.push_back(new bullet(x+6, y, 0, -5, 0, 0, CURRENTCOLOR));
-		bullets.push_back(new bullet(x+18, y, 0, -5, 0, 0, CURRENTCOLOR));
+		bullets.push_back(new bullet(x+6, y, 0, -5, 0, 0, color, false));
+		bullets.push_back(new bullet(x+18, y, 0, -5, 0, 0, color, false));
 		reloadtime = 5;
 	}
 	reloadtime--;
@@ -68,8 +60,13 @@ void ship::update(){
 	if(y > 352) y = 352;
 	if(y < 0) y = 0;
 
-	updateBullets();
-
+	std::vector<bullet*> temp;
+	for(int n = 0; n < (int)bullets.size(); n++) {
+		if(bullets[n] -> update()) temp.push_back(bullets[n]);
+		else delete bullets[n];
+	}
+	bullets = temp;
+	
 	PA_DualSetSpriteXY(SHIP, x, y);
 	PA_DualSetSpriteXY(SHIELD, x-16, y-16);
 	PA_DualSetRotsetNoAngle(SHIELD, (96-shieldsize)*8, (96-shieldsize)*8);

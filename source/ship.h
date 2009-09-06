@@ -11,13 +11,12 @@ class ship {
 		int y;
 		int shieldsize;
 		int reloadtime;
-		bool isWhite;
+		bool color;
 		bool shieldshrinking;
 		bool shieldgrowing;
 		std::vector<bullet*> bullets;
 
 		void update();
-		void updateBullets();
 		void switchColor();
 };
 #endif //SHIP_H header guard

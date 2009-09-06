@@ -1,8 +1,9 @@
 #ifndef BULLET_H //header guard
 #define BULLET_H
+
 class bullet {
 	public:
-		bullet(int xpos, int ypos, int xvel, int yvel, int xacc, int yacc, bool c);
+		bullet(int xpos, int ypos, int xvel, int yvel, int xacc, int yacc, bool c, bool e);
 		int x;
 		int y;
 		int dx;
@@ -11,6 +12,7 @@ class bullet {
 		int ay;
 		bool color;
 		int spritenum;
+		bool isenemy;
 
 		bool update();
 };
