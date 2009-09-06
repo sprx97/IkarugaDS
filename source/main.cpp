@@ -45,7 +45,7 @@ int main(int argc, char** argv) {
 		for(int n = 0; n < (int)enemies.size(); n++) if(enemies[n]->update()) temp.push_back(enemies[n]);
 		enemies = temp;
 		
-		if(PA_RandMinMax(0, 1000) > 998) enemies.push_back(new enemy(PA_RandMinMax(0, 224), PA_RandMinMax(0, 160)));
+		if(PA_RandMinMax(0, 500) > 498) enemies.push_back(new enemy(PA_RandMinMax(0, 224), PA_RandMinMax(0, 160)));
 		
 		PA_WaitForVBL();
 	}

@@ -31,13 +31,15 @@ bool bullet::update(){
 	dy += ay;
 	PA_DualSetSpriteXY(spritenum, x, y);
 	if(isenemy && color != player->color) {
-		// check collision with player
+		if(player->x+15.5 > x && player->x+15.5 < x+8 && player->y+15.5 > y && player->y+15.5 < y+8) {
+			// player dies
+		}
 	}
 	else {
 		for(int n = 0; n < (int)enemies.size(); n++) {
-			if(((x > enemies[n]->x && x < enemies[n]->x+32) || (x+8 > enemies[n]->x && x+8 < enemies[n]->x+32)) && ((y > enemies[n]->y && y < enemies[n]->y+32) || (y+8 > enemies[n]->y && y+8 < enemies[n]->y+32))) {
+			if(enemies[n]->x+15.5 > x && enemies[n]->x+15.5 < x+8 && enemies[n]->y+15.5 > y && enemies[n]->y+15.5 < y+8) {
 				if(color == enemies[n]->color) enemies[n]->health-=1;
-				else enemies[n]->health-=5;
+				else enemies[n]->health-=2;
 				PA_DualSetSpriteXY(spritenum, -8, -8);
 				return false;
 			}
