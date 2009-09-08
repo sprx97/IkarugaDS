@@ -61,10 +61,7 @@ void ship::update(){
 	if(y < 0) y = 0;
 
 	std::vector<bullet*> temp;
-	for(int n = 0; n < (int)bullets.size(); n++) {
-		if(bullets[n] -> update()) temp.push_back(bullets[n]);
-		else delete bullets[n];
-	}
+	for(int n = 0; n < (int)bullets.size(); n++) if(bullets[n] -> update()) temp.push_back(bullets[n]);
 	bullets = temp;
 	
 	PA_DualSetSpriteXY(SHIP, x, y);

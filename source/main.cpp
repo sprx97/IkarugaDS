@@ -23,7 +23,6 @@ std::vector<enemy*> getEnemies() { return enemies; }
 int main(int argc, char** argv) {
 	PA_Init();
 	PA_InitVBL();
-	PA_InitRand();
 	
 	defaultExceptionHandler();
 
@@ -39,14 +38,16 @@ int main(int argc, char** argv) {
 	PA_DualLoadSpritePal(BULLETS, (void*)bullets_Pal);
 	for(int n = BULLETS; n < 128; n++) PA_DualCreateSprite(n, (void*)bullets_Sprite, OBJ_SIZE_8X8, COLOR256, BULLETS, -8, -8);
 
+	for(int x = 32; x < 224; x+=32)
+		for(int y = 0; y < 32; y+=32)
+			enemies.push_back(new enemy(x, y));
+
 	while(true) {
 		player->update();
 		std::vector<enemy*> temp;
 		for(int n = 0; n < (int)enemies.size(); n++) if(enemies[n]->update()) temp.push_back(enemies[n]);
 		enemies = temp;
-		
-		if(PA_RandMinMax(0, 500) > 498) enemies.push_back(new enemy(PA_RandMinMax(0, 224), PA_RandMinMax(0, 160)));
-		
+				
 		PA_WaitForVBL();
 	}
 	

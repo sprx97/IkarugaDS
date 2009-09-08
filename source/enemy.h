@@ -12,6 +12,7 @@ class enemy {
 		int health;
 		bool color;
 		int spritenum;
+		int reloadtime;
 		std::vector<bullet*> bullets;
 		
 		bool update();
